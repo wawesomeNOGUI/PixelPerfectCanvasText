@@ -4,13 +4,14 @@ A Mapping for Atari 2600 pixel characters that can be drawn without anti-aliasin
 The mapping means the x,y start of each character and the x,y end of each character in chunkyFont.png
 
 # Use
-Here's an example for how to use the map in javascript:
+Here's an example for how to use atariPixelFont.js in javascript:
 ```
 //Don't Anti-Alias Scaled Images
 ctx.imageSmoothingEnabled = false;
 
-// replace 25, 25 with where you want to draw the character and 16, 16, for how you want to scale the character (each character is drawn in the png at 16x16 pixels)
-ctx.drawImage(fontImg, fontMap["!"][0], fontMap["!"][1], fontMap["!"][2], fontMap["!"][3], 25, 25, 16, 16);
+//drawText is defined as: drawText(string, x, y, spacing, scaleX = 16, scaleY = 16)
+var myString = "Hello World!";
+drawText(myString, 25, 25, 16);
 ```
 # Credits
 Thanks to http://members.bitstream.net/marksim/atarimac/fonts.html for the font! (I only changed the color to black and added a dash symbol to Atari Classic Chunky).
