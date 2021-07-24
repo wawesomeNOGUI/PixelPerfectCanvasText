@@ -3,14 +3,14 @@
 var fontImg = new Image();
   fontImg.src = "./chunkyFont.png";
 
-function drawText(x, y, spacing, scaleX = 16, scaleY = 16){
-  for(var i = 0; i<myString.length; i++){
-    if(myString[i] == " "){
+function drawText(string, x, y, spacing, scaleX = 16, scaleY = 16){
+  for(var i = 0; i<string.length; i++){
+    if(string[i] == " "){
       ctx.fillStyle = "#00000000"; //Transparent
       ctx.fillRect(x+(i*spacing), y, scaleX, scaleY);
       continue;
     }
-    ctx.drawImage(fontImg, fontMap[myString[i]][0], fontMap[myString[i]][1], fontMap[myString[i]][2], fontMap[myString[i]][3], x+(i*spacing), y, scaleX, scaleY);
+    ctx.drawImage(fontImg, fontMap[string[i]][0], fontMap[string[i]][1], fontMap[string[i]][2], fontMap[string[i]][3], x+(i*spacing), y, scaleX, scaleY);
   }
 }
 
