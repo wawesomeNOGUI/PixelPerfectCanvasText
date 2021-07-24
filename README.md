@@ -12,4 +12,6 @@ ctx.imageSmoothingEnabled = false;
 // replace 25, 25 with where you want to draw the character and 16, 16, for how you want to scale the character (each character is drawn in the png at 16x16 pixels)
 ctx.drawImage(fontImg, fontMap["!"][0], fontMap["!"][1], fontMap["!"][2], fontMap["!"][3], 25, 25, 16, 16);
 ```
+# Credits
+Thanks to http://members.bitstream.net/marksim/atarimac/fonts.html for the font! (I only changed the color to black and added a dash symbol).
 
