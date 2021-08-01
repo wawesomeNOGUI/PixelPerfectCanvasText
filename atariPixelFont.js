@@ -20,27 +20,28 @@ function drawText(myContext, string, x, y, spacing = 16, scaleX = 16, scaleY = 1
 }
 
 function drawColorText(myContext, string, color, x, y, spacing = 16, scaleX = 16, scaleY = 16){
+  tempCanvas.width = string.length*(spacing);
+  tempCanvas.height = scaleY;
+
   for(var i = 0; i<string.length; i++){
     if(string[i] == " "){
       myContext.fillStyle = "#00000000"; //Transparent
       myContext.fillRect(x+(i*spacing), y, scaleX, scaleY);
       continue;
     }
-    //Color image first
-    //tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
-    tempCanvas.width = scaleX;
-    tempCanvas.height = scaleY;
 
-    tempCtx.fillStyle = color;
-    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
 
-    //Stuff only kept where drawn pixels overlap with already non background colored pixels
-    tempCtx.globalCompositeOperation = "destination-in";
-    tempCtx.drawImage(fontImg, fontMap[string[i]][0], fontMap[string[i]][1], fontMap[string[i]][2], fontMap[string[i]][3], 0, 0, scaleX, scaleY);
-
-    //Then draw to user's canvas
-    myContext.drawImage(tempCanvas, 0, 0, scaleX, scaleY, x+(i*spacing), y, scaleX, scaleY);
+    tempCtx.drawImage(fontImg, fontMap[string[i]][0], fontMap[string[i]][1], fontMap[string[i]][2], fontMap[string[i]][3], i*spacing, 0, scaleX, scaleY);
   }
+  //Stuff only kept where drawn pixels overlap with already non background colored pixels
+  tempCtx.globalCompositeOperation = "source-in";
+
+  //Color for image
+  tempCtx.fillStyle = color;
+  tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+  //Then draw to user's canvas
+  myContext.drawImage(tempCanvas, x, y);
 }
 
 var fontMap = {
